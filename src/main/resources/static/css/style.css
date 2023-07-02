@@ -1,0 +1,53 @@
+table {
+    width: 50%;
+    margin: auto;
+    margin-top: 50px;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.btn-custom-width {
+    width: 100%;
+    text-align: left;
+}
+
+.sidebar {
+    background-color: #f8f9fa;
+    padding: 20px;
+    height: 100vh;
+}
+
+.container {
+            margin-top: 20px;
+        }
+
+        form {
+            width: 33%;
+            margin-left: 0;
+        }
+    .client-details {
+      width: 50%;
+    }
+
+    .thumbnail-column {
+      width: 30%;
+    }
+
+    .container-error-page {
+      margin-top: 50px;
+      text-align: center;
+    }
+
+    .search-container {
+      max-width: 33%;
+      margin: auto;
+    }

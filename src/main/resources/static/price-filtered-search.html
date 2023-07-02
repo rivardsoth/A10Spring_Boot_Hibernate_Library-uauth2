@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Search Books by Price</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/style-static.css">
+
+</head>
+<body>
+<div class="container">
+  <div class="search-container">
+    <h2>Search Books by Price</h2>
+
+    <form action="/pricefilteredsearch" method="get">
+      <div class="form-group">
+        <label for="searchTerm">Search Term:</label>
+        <input type="text" class="form-control" id="searchTerm" name="searchTerm" required>
+      </div>
+
+      <div class="form-group">
+        <label for="price">Price:</label>
+        <select class="form-control" id="price" name="price">
+          <option value="">All</option>
+          <option value="lessThan40">Less than $40</option>
+          <option value="lessThan100">Less than $100</option>
+          <option value="moreThan100">More than $100</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+  </div>
+</div>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

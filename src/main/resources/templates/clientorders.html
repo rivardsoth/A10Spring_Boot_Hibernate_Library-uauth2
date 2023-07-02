@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Client Orders</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+  <h1 class="text-center">Client Orders</h1>
+
+  <h2>Client Information</h2>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Order ID</th>
+      <th>Client ID</th>
+      <th>Order Date</th>
+      <th>Total Amount</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="order : ${clientOrders}">
+      <td th:text="${order.orderId}"></td>
+      <td th:text="${order.clientId}"></td>
+      <td th:text="${order.orderDate}"></td>
+      <td th:text="${order.totalAmount}"></td>
+      <td>
+        <form th:action="@{/order-items-by-orderid}" method="get">
+          <input type="hidden" name="orderId" th:value="${order.orderId}" />
+          <button type="submit" class="btn btn-primary">View Order Items</button>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

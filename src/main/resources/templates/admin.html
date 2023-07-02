@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Index of Management System</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+  </script>
+  <style>
+    .btn-custom-width {
+      width: 50%;
+    }
+  </style>
+</head>
+
+<body>
+<div th:replace="fragments/header :: header"></div>
+<span th:text="#{lang.change}"></span>
+<label for="locales"></label><select id="locales">
+  <option value=""></option>
+  <option value="en_US" th:text="#{label.lang.en}"></option>
+  <option value="fr_CA" th:text="#{label.lang.fr}"></option>
+</select>
+<div class="container">
+  <h1 th:text="#{admin.menu.h1}"></h1>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th th:text="#{admin.menu.page}"></th>
+      <th th:text="#{admin.menu.description}"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td><button class="btn btn-primary btn-custom-width" onclick="location.href='simple-unfiltered-search.html'" th:text="#{main.menu.btn}"></button></td>
+      <td th:text="#{admin.menu.ajax}"></td>
+    </tr>
+    <tr>
+      <td><button class="btn btn-primary btn-custom-width" onclick="location.href='simple-publisher-filter-search.html'" th:text="#{main.menu.btn}"></button></td>
+      <td th:text="#{main.menu.sPublisher}"></td>
+    </tr>
+    <tr>
+      <td><button class="btn btn-primary btn-custom-width" onclick="location.href='length-filtered-search.html'" th:text="#{main.menu.btn}"></button></td>
+      <td th:text="#{main.menu.sLength}"></td>
+    </tr>
+    <tr>
+      <td><button class="btn btn-primary btn-custom-width" onclick="location.href='price-filtered-search.html'" th:text="#{main.menu.btn}"></button></td>
+      <td th:text="#{main.menu.sPrice}"></td>
+    </tr>
+    <tr>
+      <td><button class="btn btn-primary btn-custom-width" onclick="location.href='show-all-books.html'" th:text="#{main.menu.btnAll}"></button></td>
+      <td th:text="#{main.menu.All}"></td>
+    </tr>
+    <tr>
+      <td><button class="btn btn-primary btn-custom-width" onclick="location.href='search-to-delete.html'" th:text="#{admin.menu.btndelete}"></button></td>
+      <td th:text="#{admin.menu.delete}"></td>
+    </tr>
+    <tr>
+      <td><button class="btn btn-primary btn-custom-width" onclick="location.href='createclient.html'" th:text="#{admin.menu.btncreateclient}"></button></td>
+      <td th:text="#{admin.menu.createclient}"></td>
+    </tr>
+    <tr>
+      <td><button class="btn btn-primary btn-custom-width" onclick="location.href='show-clients.html'" th:text="#{admin.menu.btnclientdetail}"></button></td>
+      <td th:text="#{admin.menu.allclient}"></td>
+    </tr>
+    <tr>
+      <td><button class="btn btn-primary btn-custom-width" onclick="location.href='edit-client.html'" th:text="#{admin.menu.btneditclient}"></button></td>
+      <td th:text="#{admin.menu.editclient}"></td>
+    </tr>
+    <tr>
+      <td><button class="btn btn-primary btn-custom-width" onclick="location.href='show-client-orders.html'" th:text="#{admin.menu.btnclientorder}"></button></td>
+      <td th:text="#{admin.menu.clientorder}"></td>
+    </tr>
+    <tr>
+      <td><button class="btn btn-primary btn-custom-width" onclick="location.href='show-order-items.html'" th:text="#{admin.menu.btnorderitem}"></button></td>
+      <td th:text="#{admin.menu.orderitems}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<script src="/javascript/i18n.js" data-html-file="admin"></script>
+</body>
+
+</html>

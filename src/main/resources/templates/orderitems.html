@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Order Items</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+  <h1 class="text-center" th:text="#{orderitems.h1}"></h1>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th th:text="#{orderitems.orderid}"></th>
+      <th th:text="#{orderitems.isbn}"></th>
+      <th th:text="#{orderitems.quantity}"></th>
+      <th th:text="#{all-book.price}"></th>
+      <th th:text="#{label.clientId}"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="orderItem : ${orderItems}">
+      <td th:text="${orderItem.orderId}"></td>
+      <td th:text="${orderItem.eanIsbn13}"></td>
+      <td th:text="${orderItem.quantity}"></td>
+      <td th:text="${orderItem.price}"></td>
+      <td th:text="${orderItem.clientId}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

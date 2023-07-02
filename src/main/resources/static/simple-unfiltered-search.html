@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Search Books</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/style-static.css">
+
+</head>
+<body>
+<div class="container">
+  <div class="search-container">
+    <h2>Search Books</h2>
+
+    <form id="searchForm" action="/search-no-filter" method="get">
+      <div class="form-group">
+        <label for="searchTerm">Search Term:</label>
+        <input type="text" class="form-control" id="searchTerm" name="searchTerm" required>
+      </div>
+
+      <button type="submit" id="searchButton" class="btn btn-primary">Search</button>
+    </form>
+
+    <div id="resultCountContainer" style="display: none;">
+      Number of Results: <span id="resultCount"></span>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    $('#searchTerm').keyup(function() {
+      var searchTerm = $(this).val();
+      if (searchTerm.trim().length > 0) {
+        searchBooks(searchTerm);
+      } else {
+        $('#resultCountContainer').hide();
+      }
+    });
+
+  });
+
+  function searchBooks(searchTerm) {
+    $.ajax({
+      type: 'GET',
+      url: '/get-result-count',
+      data: { searchTerm: searchTerm },
+      success: function(response) {
+        var resultCount = response.count;
+        $('#resultCount').text(resultCount);
+        $('#resultCountContainer').show();
+      },
+      error: function() {
+        console.log('An error occurred during the AJAX request.');
+      }
+    });
+  }
+</script>
+</body>
+</html>

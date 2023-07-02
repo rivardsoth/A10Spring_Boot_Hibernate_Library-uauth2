@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Search Results</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+<div class="container">
+  <div class="search-container">
+    <h2>Search Results</h2>
+
+    <div th:if="${book}">
+      <div class="card">
+        <div class="card-header">
+          Book Information
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">ISBN: <span th:text="${book.eanIsbn13}"></span></h5>
+          <p class="card-text">Title: <span th:text="${book.title}"></span></p>
+          <p class="card-text">Author: <span th:text="${book.creators}"></span></p>
+          <p class="card-text">Description: <span th:text="${book.description}"></span></p>
+          <form th:action="@{'/book/delete/' + ${book.eanIsbn13}}" method="post">
+            <button type="submit" class="btn btn-danger">Delete</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div th:if="${error}">
+      <p class="text-danger" th:text="${error}"></p>
+    </div>
+  </div>
+</div>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

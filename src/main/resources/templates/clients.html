@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Client List</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+  </style>
+</head>
+<body>
+<h1 th:text="#{message.titre}"></h1>
+<table class="table">
+  <thead>
+  <tr>
+    <th th:text="#{label.clientId}"></th>
+    <th th:text="#{label.firstName}"></th>
+    <th th:text="#{label.lastName}"></th>
+    <th th:text="#{label.email}"></th>
+    <th th:text="#{label.address}"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="client : ${clients}">
+    <td th:text="${client.clientId}"></td>
+    <td th:text="${client.firstName}"></td>
+    <td th:text="${client.lastName}"></td>
+    <td th:text="${client.email}"></td>
+    <td th:text="${client.address}"></td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

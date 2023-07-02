@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Search Results</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+<div class="container">
+  <h2 th:text="#{results.h2}"></h2>
+
+  <table class="table">
+    <thead class="thead-light">
+    <tr>
+      <th th:text="#{all-book.title}"></th>
+      <th th:text="#{all-book.creator}"></th>
+      <th th:text="#{all-book.publisher}"></th>
+      <th th:text="#{all-book.description}"></th>
+      <th th:text="#{all-book.price}"></th>
+      <th th:text="#{all-book.length}"></th>
+      <th class="text-center thumbnail-column" th:text="#{all-book.thumbnail}"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="book : ${books}">
+      <td th:text="${book.title}"></td>
+      <td th:text="${book.creators}"></td>
+      <td th:text="${book.publisher}"></td>
+      <td th:text="${book.description}"></td>
+      <td th:text="${book.price}"></td>
+      <td th:text="${book.length}"></td>
+      <td class="text-center thumbnail-column">
+        <img th:src="@{'https://covers.openlibrary.org/b/isbn/' + ${book.eanIsbn13} + '-M.jpg'}"
+             alt="Thumbnail" width="200px">
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <!-- Display the number of results -->
+  <p th:text="#{results.p}"><span th:text="${books.size()}"></span></p>
+</div>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

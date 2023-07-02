@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Index of Management System</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+    </script>
+
+</head>
+
+<body>
+<div th:replace="fragments/headerstore :: header"></div>
+<span th:text="#{lang.change}"></span>
+<label for="locales"></label><select id="locales">
+    <option value=""></option>
+    <option value="en_US" th:text="#{label.lang.en}"></option>
+    <option value="fr_CA" th:text="#{label.lang.fr}"></option>
+</select>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3 sidebar">
+            <h1 th:text="#{main.menu.message}"></h1>
+            <ul class="list-unstyled">
+                <li>
+                    <button class="btn btn-primary btn-custom-width" onclick="location.href='simple-unfiltered-search.html'" th:text="#{main.menu.btn}"></button>
+                    <span th:text="#{main.menu.sAjax}"></span>
+                </li>
+                <li>
+                    <button class="btn btn-primary btn-custom-width" onclick="location.href='simple-publisher-filter-search.html'" th:text="#{main.menu.btn}"></button>
+                    <span th:text="#{main.menu.sPublisher}"></span>
+                </li>
+                <li>
+                    <button class="btn btn-primary btn-custom-width" onclick="location.href='length-filtered-search.html'" th:text="#{main.menu.btn}"></button>
+                    <span th:text="#{main.menu.sLength}"></span>
+                </li>
+                <li>
+                    <button class="btn btn-primary btn-custom-width" onclick="location.href='price-filtered-search.html'" th:text="#{main.menu.btn}"></button>
+                    <span th:text="#{main.menu.sPrice}"></span>
+                </li>
+                <li>
+                    <button class="btn btn-primary btn-custom-width" onclick="location.href='show-all-books.html'" th:text="#{main.menu.btnAll}"></button>
+                    <span th:text="#{main.menu.All}"></span>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-9">
+            <!-- Main content goes here -->
+            <h1 th:text="#{main.content}"></h1>
+            <p th:text="#{main.area}"></p>
+        </div>
+    </div>
+</div>
+<script src="/javascript/i18n.js" data-html-file="store">
+</script>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Search Book by ISBN to delete</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/style-static.css">
+
+</head>
+<body>
+<div class="container">
+  <div class="search-container">
+    <h2>Search Book by ISBN to delete</h2>
+
+    <form action="/book/delete" method="get">
+      <div class="form-group">
+        <label for="isbn">ISBN:</label>
+        <input type="text" class="form-control" id="isbn" name="isbn" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+  </div>
+</div>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
