@@ -1,22 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>Index Page</title>
+  <title>Confirmation</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <style>
-    .container {
-      margin-top: 20px;
-    }
-  </style>
 </head>
 <body>
 <div class="container">
-  <h1>Clients Page</h1>
+  <h2>Confirmation</h2>
 
-  <form action="/clients" method="get">
-    <button type="submit" class="btn btn-primary">Show All Clients</button>
-  </form>
+  <p th:text="${message}"></p>
+
+  <a href="javascript:history.back()" class="btn btn-primary">Back</a>
 </div>
 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

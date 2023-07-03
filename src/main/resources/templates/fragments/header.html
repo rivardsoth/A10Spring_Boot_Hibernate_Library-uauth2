@@ -19,13 +19,15 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item" th:if="${authenticatedClient != null}">
-          <span id="userFullName" class="nav-link" th:text="${authenticatedClient.firstName + ' ' + authenticatedClient.lastName}"></span>
+            <span id="userFullNameContainer" class="nav-link">
+              <span th:text="${authenticatedClient.firstName + ' ' + authenticatedClient.lastName}"></span>
+            </span>
         </li>
         <li class="nav-item" th:if="${authenticatedClient == null}">
           <a id="loginLink" class="nav-link" href="/adminlogin.html">Login</a>
         </li>
-        <li class="nav-item">
-          <a id="logoutLink" class="nav-link" href="/logout" style="display: none">Logout</a>
+        <li class="nav-item" th:if="${authenticatedClient != null}">
+          <a id="logoutLink" class="nav-link" href="/logout">Logout</a>
         </li>
       </ul>
     </div>
@@ -33,28 +35,29 @@
 </header>
 
 <script th:inline="javascript">
-  /*<![CDATA[*/
-  // Check if user session exists
-  const userSessionExists = /*[[${authenticatedClient != null}]]*/ false;
-
-  // Function to display user's first name or login/logout links
-  function displayUserOrLoginLogout() {
-    const userFirstNameElement = document.getElementById('userFirstName');
+  // Function to display user's full name and toggle login/logout links
+  function displayUserOrLoginLogout(userFullName) {
+    const userFullNameContainer = document.getElementById('userFullNameContainer');
     const loginLinkElement = document.getElementById('loginLink');
     const logoutLinkElement = document.getElementById('logoutLink');
 
-    if (userSessionExists) {
+    if (userFullName) {
+      userFullNameContainer.style.display = ''; // Show user's full name
       loginLinkElement.style.display = 'none'; // Hide login link
       logoutLinkElement.style.display = ''; // Show logout link
     } else {
-      userFirstNameElement.style.display = 'none'; // Hide user's first name
+      userFullNameContainer.style.display = 'none'; // Hide user's full name
+      loginLinkElement.style.display = ''; // Show login link
       logoutLinkElement.style.display = 'none'; // Hide logout link
     }
   }
 
-  // Call the function on page load
-  window.addEventListener('load', displayUserOrLoginLogout);
-  /*]]>*/
+  // Check if user session exists and retrieve the user's full name
+  const userSessionExists = /*[[${authenticatedClient != null}]]*/ false;
+  const userFullName = /*[[${authenticatedClient.firstName + ' ' + authenticatedClient.lastName}]]*/ null;
+
+  // Call the function with the user's full name (if available)
+  displayUserOrLoginLogout(userSessionExists ? userFullName : null);
 </script>
 </body>
 

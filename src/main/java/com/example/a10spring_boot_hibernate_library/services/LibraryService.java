@@ -81,4 +81,28 @@ public class LibraryService {
     }
 
 
+    public List<Library> searchBooksByFilters(String searchTerm, String price, String length, String publisher) {
+        // Validate and convert the price parameter
+        BigDecimal priceValue;
+        try {
+            priceValue = new BigDecimal(price);
+        } catch (NumberFormatException e) {
+            // Handle the case where the price parameter is not a valid numeric value
+            throw new IllegalArgumentException("Invalid price value: " + price);
+        }
+
+        // Convert the length parameter to an integer value
+        int lengthValue;
+        try {
+            lengthValue = Integer.parseInt(length);
+        } catch (NumberFormatException e) {
+            // Handle the case where the length parameter cannot be parsed as an integer
+            throw new IllegalArgumentException("Invalid length value: " + length);
+        }
+
+        return libraryRepository.findByPriceLessThanAndLengthLessThanAndPublisherInAndDescriptionContaining(
+                priceValue, lengthValue, List.of(publisher), searchTerm);
+    }
+
+
 }

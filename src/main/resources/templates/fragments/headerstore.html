@@ -5,13 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <title>Bootstrap Header</title>
 </head>
 
 <body>
 <header class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-        <div class="d-flex">
+        <div class="d-flex align-items-center">
+            <i class="bi bi-book-fill mr-2"></i> <!-- Book icon -->
             <a class="navbar-brand" href="#" style="margin-right: auto;">Books Store</a>
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -21,13 +23,18 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item" th:if="${authenticatedClient != null}">
-                    <span id="userFullName" class="nav-link" th:text="${authenticatedClient.firstName + ' ' + authenticatedClient.lastName}"></span>
+                    <span id="userFullName" class="nav-link d-flex align-items-center">
+                        <span th:text="${authenticatedClient.firstName + ' ' + authenticatedClient.lastName}"></span>
+                        <a href="/shoppingcart" class="ml-2">
+                            <i class="bi bi-cart-fill"></i> <!-- Shopping cart icon -->
+                        </a>
+                        <a id="logoutLink" class="nav-link" href="/logoutclient">Logout</a>
+                    </span>
                 </li>
                 <li class="nav-item" th:if="${authenticatedClient == null}">
-                    <a id="loginLink" class="nav-link" href="/login.html">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a id="logoutLink" class="nav-link" href="/logout" style="display: none">Logout</a>
+                    <a id="loginLink" class="nav-link" href="/login.html">
+                        Login <i class="bi bi-arrow-right-square-fill"></i>
+                    </a>
                 </li>
             </ul>
         </div>
@@ -41,15 +48,16 @@
 
     // Function to display user's first name or login/logout links
     function displayUserOrLoginLogout() {
-        const userFirstNameElement = document.getElementById('userFirstName');
+        const userFullNameElement = document.getElementById('userFullName');
         const loginLinkElement = document.getElementById('loginLink');
         const logoutLinkElement = document.getElementById('logoutLink');
 
         if (userSessionExists) {
             loginLinkElement.style.display = 'none'; // Hide login link
+            userFullNameElement.style.display = ''; // Show user's full name
             logoutLinkElement.style.display = ''; // Show logout link
         } else {
-            userFirstNameElement.style.display = 'none'; // Hide user's first name
+            userFullNameElement.style.display = 'none'; // Hide user's full name
             logoutLinkElement.style.display = 'none'; // Hide logout link
         }
     }

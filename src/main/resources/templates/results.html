@@ -1,25 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
   <title>Search Results</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/css/style.css">
-
+  <style>
+    .thumbnail-column {
+      width: 30%;
+    }
+  </style>
 </head>
 <body>
 <div class="container">
-  <h2 th:text="#{results.h2}"></h2>
+  <h2>Search Results</h2>
 
   <table class="table">
     <thead class="thead-light">
     <tr>
-      <th th:text="#{all-book.title}"></th>
-      <th th:text="#{all-book.creator}"></th>
-      <th th:text="#{all-book.publisher}"></th>
-      <th th:text="#{all-book.description}"></th>
-      <th th:text="#{all-book.price}"></th>
-      <th th:text="#{all-book.length}"></th>
-      <th class="text-center thumbnail-column" th:text="#{all-book.thumbnail}"></th>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Publisher</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Length</th>
+      <th class="text-center thumbnail-column">Thumbnail</th>
+      <th></th> <!-- Add a new table header column for the "Add to Cart" button -->
     </tr>
     </thead>
     <tbody>
@@ -34,14 +38,24 @@
         <img th:src="@{'https://covers.openlibrary.org/b/isbn/' + ${book.eanIsbn13} + '-M.jpg'}"
              alt="Thumbnail" width="200px">
       </td>
+      <td>
+        <form th:if="${authenticatedClient != null}" action="/add-to-cart" method="post">
+          <input type="hidden" name="isbn" th:value="${book.eanIsbn13}">
+          <button type="submit" class="btn btn-primary">Add to Cart</button>
+        </form>
+      </td>
+
     </tr>
     </tbody>
   </table>
 
   <!-- Display the number of results -->
-  <p th:text="#{results.p}"><span th:text="${books.size()}"></span></p>
+  <p>Total Results: <span th:text="${books.size()}"></span></p>
 </div>
 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+</script>
 </body>
 </html>
