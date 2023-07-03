@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Combined Filtered Search</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+  <h1 class="mt-5">Combined Filtered Search</h1>
+  <form action="/combinedsearch" method="get" class="mt-4">
+    <div class="form-group">
+      <label for="searchTerm">Search Term:</label>
+      <input type="text" id="searchTerm" name="searchTerm" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+      <label for="price">Price Range:</label>
+      <select id="price" name="price" class="form-control">
+        <option value="40">Less than $40</option>
+        <option value="100">Less than $100</option>
+        <option value="200">Less than $200</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="length">Length Range:</label>
+      <select id="length" name="length" class="form-control">
+        <option value="250">Less than 250 pages</option>
+        <option value="500">Less than 500 pages</option>
+        <option value="1000">Less than 1000 pages</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="publisher">Publishers:</label>
+      <select class="form-control" id="publisher" name="publisher" required>
+        <option value="Pearson">Pearson</option>
+        <option value="Wiley">Wiley</option>
+        <option value="Prentice Hall">Prentice Hall</option>
+        <option value="Addison-Wesley">Addison-Wesley</option>
+        <option value="Addison-Wesley Professional">Addison-Wesley Professional</option>
+        <option value="McGrawHill Higher Education">McGrawHill Higher Education</option>
+        <option value="McGraw-Hill Science/Engineering/Math">McGraw-Hill Science/Engineering/Math</option>
+        <option value="The MIT Press">The MIT Press</option>
+        <option value="O'Reilly Media">O'Reilly Media</option>
+        <option value="Pearson Education">Pearson Education</option>
+      </select>
+    </div>
+
+    <input type="submit" value="Search" class="btn btn-primary">
+  </form>
+</div>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -27,5 +27,8 @@ public interface LibraryRepository extends JpaRepository <Library, Long> {
 
     int countByDescriptionContaining(String searchTerm);
 
+    List<Library> findByPriceLessThanAndLengthLessThanAndPublisherInAndDescriptionContaining(
+            BigDecimal maxPrice, int maxLength, List<String> publishers, String searchTerm);
+
 }
 

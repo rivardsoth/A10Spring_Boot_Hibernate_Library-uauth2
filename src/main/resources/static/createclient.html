@@ -3,14 +3,21 @@
 <head>
   <title>Create Client</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/css/style-static.css">
+  <style>
+    .container {
+      margin-top: 20px;
+    }
 
+    .form-group {
+      width: 33%;
+    }
+  </style>
 </head>
 <body>
 <div class="container">
   <h1>Create Client</h1>
 
-  <form method="post" action="/createclient">
+  <form method="post" action="/createclient" onsubmit="return validateForm()">
     <div class="form-group">
       <label for="firstName">First Name:</label>
       <input type="text" class="form-control" id="firstName" name="firstName" required>
@@ -36,5 +43,43 @@
 </div>
 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+  function validateForm() {
+    var firstName = document.getElementById("firstName").value;
+    var lastName = document.getElementById("lastName").value;
+    var email = document.getElementById("email").value;
+    var address = document.getElementById("address").value;
+
+    // Check if all fields are filled
+    if (firstName === "" || lastName === "" || email === "" || address === "") {
+      alert("Please fill in all fields.");
+      return false;
+    }
+
+    // Check email format
+    if (!isValidEmail(email)) {
+      alert("Please enter a valid email address.");
+      return false;
+    }
+
+    // Check address format
+    if (!isValidAddress(address)) {
+      alert("Please enter a valid address (e.g., 123 Main St, A1B 2C3).");
+      return false;
+    }
+
+    return true;
+  }
+
+  function isValidEmail(email) {
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+
+  function isValidAddress(address) {
+    var addressRegex = /^\d+\s+([a-zA-Z]+\s*)+,\s*[A-Za-z]\d[A-Za-z]\s*\d[A-Za-z]\d$/;
+    return addressRegex.test(address);
+  }
+</script>
 </body>
 </html>

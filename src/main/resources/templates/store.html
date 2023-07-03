@@ -1,60 +1,120 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
-    <title>Index of Management System</title>
+    <title>Welcome to Bookstore</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
-    </script>
+    <style>
+        table {
+            width: 50%;
+            margin: auto;
+            margin-top: 50px;
+            border-collapse: collapse;
+        }
 
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .btn-custom-width {
+            width: 100%;
+            text-align: left;
+        }
+
+        .sidebar {
+            background-color: #f8f9fa;
+            padding: 20px;
+            height: 100vh;
+        }
+    </style>
 </head>
 
 <body>
 <div th:replace="fragments/headerstore :: header"></div>
-<span th:text="#{lang.change}"></span>
-<label for="locales"></label><select id="locales">
-    <option value=""></option>
-    <option value="en_US" th:text="#{label.lang.en}"></option>
-    <option value="fr_CA" th:text="#{label.lang.fr}"></option>
-</select>
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-3 sidebar">
-            <h1 th:text="#{main.menu.message}"></h1>
+            <h1>Welcome to Bookstore</h1>
             <ul class="list-unstyled">
                 <li>
-                    <button class="btn btn-primary btn-custom-width" onclick="location.href='simple-unfiltered-search.html'" th:text="#{main.menu.btn}"></button>
-                    <span th:text="#{main.menu.sAjax}"></span>
+                    <button class="btn btn-primary btn-custom-width" onclick="location.href='simple-unfiltered-search.html'">Search Books</button>
+                    <span>Search with AJAX request</span>
                 </li>
                 <li>
-                    <button class="btn btn-primary btn-custom-width" onclick="location.href='simple-publisher-filter-search.html'" th:text="#{main.menu.btn}"></button>
-                    <span th:text="#{main.menu.sPublisher}"></span>
+                    <button class="btn btn-primary btn-custom-width" onclick="location.href='simple-publisher-filter-search.html'">Search Books</button>
+                    <span>Search for books based on criteria (Publisher)</span>
                 </li>
                 <li>
-                    <button class="btn btn-primary btn-custom-width" onclick="location.href='length-filtered-search.html'" th:text="#{main.menu.btn}"></button>
-                    <span th:text="#{main.menu.sLength}"></span>
+                    <button class="btn btn-primary btn-custom-width" onclick="location.href='length-filtered-search.html'">Search Books</button>
+                    <span>Search for books based on criteria (Length)</span>
                 </li>
                 <li>
-                    <button class="btn btn-primary btn-custom-width" onclick="location.href='price-filtered-search.html'" th:text="#{main.menu.btn}"></button>
-                    <span th:text="#{main.menu.sPrice}"></span>
+                    <button class="btn btn-primary btn-custom-width" onclick="location.href='price-filtered-search.html'">Search Books</button>
+                    <span>Search for books based on criteria (Price)</span>
                 </li>
                 <li>
-                    <button class="btn btn-primary btn-custom-width" onclick="location.href='show-all-books.html'" th:text="#{main.menu.btnAll}"></button>
-                    <span th:text="#{main.menu.All}"></span>
+                    <button class="btn btn-primary btn-custom-width" onclick="location.href='show-all-books.html'">All Books</button>
+                    <span>Show all books in the system</span>
                 </li>
             </ul>
         </div>
         <div class="col-md-9">
-            <!-- Main content goes here -->
-            <h1 th:text="#{main.content}"></h1>
-            <p th:text="#{main.area}"></p>
+            <div class="container">
+                <h1 class="mt-5">Combined Filtered Search</h1>
+                <form action="/combinedsearch" method="get" class="mt-4">
+                    <div class="form-group">
+                        <label for="searchTerm">Search Term:</label>
+                        <input type="text" id="searchTerm" name="searchTerm" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="price">Price Range:</label>
+                        <select id="price" name="price" class="form-control">
+                            <option value="40">Less than $40</option>
+                            <option value="100">Less than $100</option>
+                            <option value="200">Less than $200</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="length">Length Range:</label>
+                        <select id="length" name="length" class="form-control">
+                            <option value="250">Less than 250 pages</option>
+                            <option value="500">Less than 500 pages</option>
+                            <option value="1000">Less than 1000 pages</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="publisher">Publishers:</label>
+                        <select class="form-control" id="publisher" name="publisher" required>
+                            <option value="Pearson">Pearson</option>
+                            <option value="Wiley">Wiley</option>
+                            <option value="Prentice Hall">Prentice Hall</option>
+                            <option value="Addison-Wesley">Addison-Wesley</option>
+                            <option value="Addison-Wesley Professional">Addison-Wesley Professional</option>
+                            <option value="McGrawHill Higher Education">McGrawHill Higher Education</option>
+                            <option value="McGraw-Hill Science/Engineering/Math">McGraw-Hill Science/Engineering/Math</option>
+                            <option value="The MIT Press">The MIT Press</option>
+                            <option value="O'Reilly Media">O'Reilly Media</option>
+                            <option value="Pearson Education">Pearson Education</option>
+                        </select>
+                    </div>
+
+                    <input type="submit" value="Search" class="btn btn-primary">
+                </form>
+            </div>
         </div>
     </div>
 </div>
-<script src="/javascript/i18n.js" data-html-file="store">
-</script>
 </body>
 
 </html>
